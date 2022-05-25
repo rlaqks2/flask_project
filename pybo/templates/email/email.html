@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container my-3">
+    <div class="row my-3">
+        <div class="col-6">
+            <h1>Email System</h1>
+
+ <h1>{{ content }}</h1>
+
+ <form action="/email/email" method="POST"enctype="multipart/form-data">
+  <dl>
+   <dt>Email_Sender:</dt>
+
+   <dd>
+    <input type="text" name=email_sender value="" />
+   </dd>
+
+   <dt>Email_Receiver:</dt>
+
+   <dd>
+    <input type="text" name=email_receiver value="" />
+   </dd>
+
+   <dt>File:</dt>
+   <dd>
+    <input type=file name=email_file value="">
+   </dd>
+
+   <dt>Title:</dt>
+   <dd>
+    <input type="text" name=email_title value="">
+   </dd>
+
+   <dt>Content:</dt>
+   <dd>
+    <input type="text" name=email_content value="">
+   </dd>
+  </dl>
+  <p>
+   <input type=submit value=SEND>
+  </p>
+ </form>
+        </div>
+
+    </div>
+</div>
+
+{% endblock %}
