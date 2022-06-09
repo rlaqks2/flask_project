@@ -8,6 +8,7 @@ from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 
 from flask import request, render_template, Blueprint, app, flash, Flask
+from werkzeug.utils import secure_filename
 
 bp = Blueprint('email', __name__, url_prefix='/email')
 
@@ -44,7 +45,8 @@ def send_email(senders, receiver, file, title, content):
 
         # 아래 코드는 첨부파일이 있을 경우에만 주석처리 빼시면 됩니다.
         # 첨부 파일 보내기
-        filename = 'files/test.pdf'  # 첨부 파일 이름 이처럼 이름만쓰려면 같은 경로에 파일있어야됨 아니면 절대경로입력
+        file.save(secure_filename(file.filename))
+        filename = file.filename  # 첨부 파일 이름 이처럼 이름만쓰려면 같은 경로에 파일있어야됨 아니면 절대경로입력
         attachment = open(filename, 'rb')
 
         part = MIMEBase('application', 'octet-stream')
